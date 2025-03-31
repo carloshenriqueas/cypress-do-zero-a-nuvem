@@ -1,0 +1,8 @@
+{
+  "firstName": "Carlos",
+  "lastName": "Santos",
+  "email": "carloshenrique39@cypress.io",
+  "phone":"77999913026",
+  "message": "preciso aprender cypress",
+  "file":"cypress/support/commands.js"  
+}
