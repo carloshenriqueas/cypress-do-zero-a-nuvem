@@ -17,6 +17,14 @@ Cypress.Commands.add('fillMandatoryFieldsAndSubmit', (firstName, lastName, email
     cy.get('#open-text-area').type(mensagem, {delay:100})
     cy.get('button[type="submit"]').click()
 })
+
+Cypress.Commands.add('fillLessPhone', (firstName, lastName, email, mensagem) => { 
+    cy.get('#firstName').type(firstName)
+    cy.get('#lastName').type(lastName)
+    cy.get('#email').type(email)
+    cy.get('#open-text-area').type(mensagem, {delay:100})
+    cy.get('button[type="submit"]').click()
+})
 //
 //
 // -- This is a child command --

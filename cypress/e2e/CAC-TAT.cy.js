@@ -12,20 +12,12 @@ describe('Central de atendimento CAT-TAT', () => {
 
   it('Preencha os campos obrigatórios e envie o formulário', () => {
     cy.fillMandatoryFieldsAndSubmit(dataUser.firstName, dataUser.lastName, dataUser.email, dataUser.message)
-    /*cy.get('#firstName').type('Carlos')
-    cy.get('#lastName').type('Santos')
-    cy.get('#email').type('carloshenrique39@gmail.com')
-    cy.get('#open-text-area').type('preciso aprender cypress', {delay:100})
-    cy.get('button[type="submit"]').click()*/
     cy.contains('button', 'Enviar').should('be.visible','Mensagem enviada com sucesso.')
 
   })
 
   it('exibe mensagem de erro ao submeter o formulário com um email inválido', () => {
-    cy.get('#firstName').type('Carlos')
-    cy.get('#lastName').type('Santos')
-    cy.get('#email').type('carloshenrique39gmail.com')
-    cy.get('#open-text-area').type('preciso aprender cypress')
+    cy.fillMandatoryFieldsAndSubmit(dataUser.firstName, dataUser.lastName, dataUser.wrongmail, dataUser.message)
     cy.get('button[type="submit"]').click()
     cy.get('.error > strong').should('be.visible','Valide os campos obrigatórios!')
   });
@@ -35,11 +27,8 @@ describe('Central de atendimento CAT-TAT', () => {
     
   });
 
-  it('Mensagem de erro telefone como obrigatório', () => {
-    cy.get('#firstName').type('Carlos')
-    cy.get('#lastName').type('Santos')
-    cy.get('#email').type('carloshenrique39@gmail.com')
-    cy.get('#open-text-area').type('preciso aprender cypress')
+  it.only('Mensagem de erro telefone como obrigatório', () => {
+    cy.fillLessPhone(dataUser.firstName, dataUser.lastName, dataUser.email, dataUser.message)
     cy.get('#phone-checkbox').check()
     cy.get('button[type="submit"]').click()
     cy.get('.error > strong').should('be.visible','Valide os campos obrigatórios!')
@@ -107,5 +96,7 @@ describe('Central de atendimento CAT-TAT', () => {
     cy.contains('a', 'Política de Privacidade').invoke('removeAttr', 'target').click()
     cy.contains('h1', 'CAC TAT - Política de Privacidade').should('be.visible', 'CAC TAT - Política de Privacidade')
   })
+
+
 
   });
