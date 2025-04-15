@@ -27,7 +27,7 @@ describe('Central de atendimento CAT-TAT', () => {
     
   });
 
-  it.only('Mensagem de erro telefone como obrigatório', () => {
+  it('Mensagem de erro telefone como obrigatório', () => {
     cy.fillLessPhone(dataUser.firstName, dataUser.lastName, dataUser.email, dataUser.message)
     cy.get('#phone-checkbox').check()
     cy.get('button[type="submit"]').click()
@@ -97,6 +97,10 @@ describe('Central de atendimento CAT-TAT', () => {
     cy.contains('h1', 'CAC TAT - Política de Privacidade').should('be.visible', 'CAC TAT - Política de Privacidade')
   })
 
+  Cypress._.times(5,()=>{ 
+    it.only('Preencha os campos obrigatórios e envie o formulário 5 vezes', () => {
+    cy.fillMandatoryFieldsAndSubmit(dataUser.firstName, dataUser.lastName, dataUser.email, dataUser.message)
+    cy.contains('button', 'Enviar').should('be.visible','Mensagem enviada com sucesso.')
 
-
+  })})
   });
